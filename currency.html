@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Currency Converter</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #eaeaea;
+}
+
+/* Container (fix spacing neza) */
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
+    background: #f8f8f8;
+    padding: 20px;
+}
+
+/* Header */
+.header {
+    background: #06065f;
+    color: white;
+    text-align: center;
+    padding: 50px 20px 120px;
+}
+
+.header h1 {
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+.header p {
+    opacity: 0.8;
+}
+
+/* Card */
+.card {
+    background: #f1f1f1;
+    margin: -80px auto 0;
+    padding: 30px;
+    width: 90%;
+    box-shadow: 0 3px 10px rgba(26, 25, 21, 0.1);
+}
+
+/* Form */
+.form {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Group */
+.group {
+    width: 30%;
+    position: relative;
+}
+
+.group label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.group input,
+.group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    appearance: none;
+    background: white;
+}
+
+/* REAL ICON (better) */
+.group::after {
+    content: "";
+    position: absolute;
+    right: 12px;
+    top: 40px;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid #333;
+    border-bottom: 2px solid #333;
+    transform: rotate(45deg);
+}
+
+/* Bottom section */
+.bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+/* Button */
+button {
+    padding: 12px 40px;
+    background: #0b0b5c;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Result */
+.result {
+    text-align: reft;
+    color: #000;
+    
+}
+
+.result small {
+    display: block;
+    color: #000000;
+    font-size: 20px;
+     font-weight: 600;
+    
+}
+
+/* IMPORTANT: bold result */
+.result span {
+    font-size: 20px;
+    font-weight: 600;
+    color: black;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>XYZ-COMPANY</h1>
+        <p>CURRENCY EXCHANGE PLATFORM</p>
+    </div>
+
+    <div class="card">
+
+        <div class="form">
+            <div class="group">
+                <label>Amount</label>
+                <input type="number" id="amount" value="100">
+            </div>
+
+            <div class="group">
+                <label>From</label>
+                <select id="from">
+                    <option value="usd">USD - $</option>
+                    <option value="rwf">RWF</option>
+                </select>
+            </div>
+
+            <div class="group">
+                <label>To</label>
+                <select id="to">
+                    <option value="rwf">Rwanda - RWF</option>
+                    <option value="usd">USD</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="bottom">
+            <button onclick="convert()">Convert</button>
+
+            <div class="result">
+                <small>Result</small>
+                <span id="output">10 300</span>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+function convert() {
+    let amount = document.getElementById("amount").value;
+    let from = document.getElementById("from").value;
+    let to = document.getElementById("to").value;
+
+    let rate = 1400;
+
+    let result = 0;
+
+    if (from === "usd" && to === "rwf") {
+        result = amount * rate;
+    } else if (from === "rwf" && to === "usd") {
+        result = amount / rate;
+    } else {
+        result = amount;
+    }
+
+    document.getElementById("output").innerText = result.toLocaleString();
+}
+</script>
+
+</body>
+</html>
